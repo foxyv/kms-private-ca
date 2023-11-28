@@ -21,4 +21,4 @@ This project is still in development. It is not ready for production use.
 ## Project Wobbegong
 
 Project Wobbegong is an open source project similar to Apache. It is a collection of open source projects that are
-freely usable by anyone under the Apache 2.0 license.
+freely usable by anyone under the MIT license.
