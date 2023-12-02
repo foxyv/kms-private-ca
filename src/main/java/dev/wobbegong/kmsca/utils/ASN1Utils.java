@@ -1,7 +1,6 @@
 package dev.wobbegong.kmsca.utils;
 
 import dev.wobbegong.kmsca.entities.BitString;
-import dev.wobbegong.kmsca.entities.asn1.ASN1TagType;
 import dev.wobbegong.kmsca.entities.asn1.charsets.PrintableStringCharset;
 import dev.wobbegong.kmsca.entities.asn1.types.ASN1Item;
 import dev.wobbegong.kmsca.entities.asn1.types.ASN1Sequence;
@@ -91,10 +90,5 @@ public class ASN1Utils {
 
         return sb.toString();
     }
-
-    public static boolean isSequenceOfSequences(ASN1Sequence sequence) {
-        return sequence.asn1ItemList.stream().noneMatch(item -> item.type() != ASN1TagType.SEQUENCE);
-    }
-
 
 }

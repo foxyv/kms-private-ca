@@ -53,6 +53,8 @@ public class X509PublicKeyUtils {
     }
 
     private static X509PublicKey<?> ecPublicKey(BitString bitString) {
+        KnownOids algorithm = KnownOids.ecPublicKey;
+
         return null;
     }
 

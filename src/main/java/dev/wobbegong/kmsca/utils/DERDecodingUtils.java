@@ -299,6 +299,9 @@ public class DERDecodingUtils {
 
         final BigInteger length;
         if (lengthOctet.longForm()) {
+            if(lengthOctet.lengthOctets() > buffer.remaining()) {
+                throw new RuntimeException("Byte buffer does not have " + lengthOctet.lengthOctets() + " bytes remaining. Instead it has: " + buffer.remaining());
+            }
             // For length greater than 127 we use a byte array
             byte[] lengthBytes = new byte[lengthOctet.lengthOctets()];
             buffer.get(lengthBytes);

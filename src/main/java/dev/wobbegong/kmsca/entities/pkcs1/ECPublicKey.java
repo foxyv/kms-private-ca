@@ -7,6 +7,10 @@ public record ECPublicKey(ECPoint w, ECParameters parameters, BigInteger n, int 
 
     }
 
+    public record EllipticCurve(ECParameters parameters, ECPoint point) {
+
+    }
+
     /**
      *
      * @param p
@@ -17,10 +21,6 @@ public record ECPublicKey(ECPoint w, ECParameters parameters, BigInteger n, int 
      * @param h
      */
     public record ECParameters(BigInteger p, BigInteger a, BigInteger b, ECPoint generator, BigInteger generatorOrder, BigInteger h) {
-
-    }
-
-    public record EllipticCurve(ECParameters parameters, ECPoint point) {
 
     }
 }
