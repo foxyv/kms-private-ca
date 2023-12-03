@@ -1,12 +1,15 @@
 package dev.wobbegong.kmsca.utils;
 
 import dev.wobbegong.kmsca.entities.BitString;
+import dev.wobbegong.kmsca.entities.asn1.ASN1TagType;
 import dev.wobbegong.kmsca.entities.asn1.charsets.PrintableStringCharset;
 import dev.wobbegong.kmsca.entities.asn1.types.ASN1Item;
 import dev.wobbegong.kmsca.entities.asn1.types.ASN1Sequence;
 import dev.wobbegong.kmsca.entities.asn1.types.ASN1Set;
 import dev.wobbegong.kmsca.entities.oid.KnownOids;
 import org.bouncycastle.util.encoders.Hex;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -62,7 +65,8 @@ public class ASN1Utils {
                 sb.append(DERDecodingUtils.decodeUTCTime(item)).append("\n");
             }
             case NULL -> {
-                // No contents for null
+                sb.append("\t".repeat(Math.max(0, indentLevel + 1)));
+                sb.append(item.contents().length).append("\n");
             }
             case PRINTABLE_STRING -> {
 
@@ -89,6 +93,15 @@ public class ASN1Utils {
         }
 
         return sb.toString();
+    }
+
+    public ASN1Item nullItem() {
+        return new ASN1Item(0, ASN1TagType.NULL, new byte[0]);
+    }
+
+    public ASN1Item oidItem(String oid) {
+        byte[] encodedOID = DEREncodingUtils.encodeOID(oid);
+        return new ASN1Item(0, ASN1TagType.OBJECT_IDENTIFIER, encodedOID);
     }
 
 }

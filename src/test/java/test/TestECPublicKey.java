@@ -1,5 +1,7 @@
 package test;
 
+import dev.wobbegong.kmsca.entities.asn1.types.ASN1Item;
+import dev.wobbegong.kmsca.entities.asn1.types.ASN1Sequence;
 import dev.wobbegong.kmsca.utils.ASN1Utils;
 import dev.wobbegong.kmsca.utils.DERDecodingUtils;
 import org.junit.jupiter.api.Test;
@@ -9,10 +11,15 @@ import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.KeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 public class TestECPublicKey {
 
+    /**
+     * Bit Strings for EC public keys.
+     */
     String[] ecPublicKeys = new String[]{
             "BCRcLaIq/RxLpl2XcycxrLKgaWLvZeimsPCsS5//HAtwD9OYL038DwCbN/B0BVcyly4F7ypDJaP7bjQnE/ZPfmnTAple6yRHksEkm+axIY/BJIH8aMwfabpY9Rki93TGFg==",
             "BM2b1Z+AgwrsCUrzFko+XM93rN5nBQ0dB7bcFvtaixTb4nFgxLpFlRGJjuoG3/cqFhykucXFMuAD4B6CGDiL10XYCmpu5gB3+wJRfSLYCm6aW3ff8PpB7DncdcpoBwwf6g==",
@@ -30,6 +37,13 @@ public class TestECPublicKey {
     }
 
     private static void testUsing(byte[] encoded) throws Exception {
+
+        //ASN1Item nullItem = ;
+        //ASN1Sequence oidSequence = new ASN1Sequence(List.of(oid, nullItem));
+        List<ASN1Item> items = new ArrayList<>();
+
+
+        ASN1Sequence publicKeySequence = new ASN1Sequence(items);
         KeyFactory keyFactory = KeyFactory.getInstance("EC");
         KeySpec keyspec = new X509EncodedKeySpec(encoded);
         PublicKey publicKey = keyFactory.generatePublic(keyspec);

@@ -257,7 +257,7 @@ public class DERDecodingUtils {
         return new ASN1Set(length, start, asn1Itemset, setBytes);
     }
 
-    private static ASN1Item parseNextSequence(int start, ByteBuffer buffer) {
+    private static ASN1Sequence parseNextSequence(int start, ByteBuffer buffer) {
         final int startBufferPosition = buffer.position();
         final int length = parseNextLength(buffer).intValueExact();
 
